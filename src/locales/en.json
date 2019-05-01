@@ -1,0 +1,55 @@
+{
+	"header": {
+		"greetings": [
+			"You’re up early",
+			"Good Morning",
+			"Good Day",
+			"Good Afternoon",
+			"Good Evening",
+			"Good Night"
+		],
+		"fraction": "This time will pass today"
+	},
+	"logform": {
+		"misc": {
+			"begin":"log time (press enter to commit)",
+			"stage0transition": "working on",
+			"placeholder": "log time",
+			"recap": "commited this week:"
+		},
+		"stage-0": {
+			"placeholder": "time of day? (em|m|md|an|ev|n|ln)",
+			"singularHour": "An hour",
+			"singularHourNoPronoun": "hour",
+			"pluralHour": "hours",
+			"minutes": "minutes"
+		},
+		"stage-1": {
+			"placeholder": "project",
+			"values": [
+				{ "abbr": "em", "expa": "in the early morning" },
+				{ "abbr": "m",  "expa": "in the morning" },
+				{ "abbr": "md", "expa": "around midday" },
+				{ "abbr": "an", "expa": "in the afternoon" },
+				{ "abbr": "ev", "expa": "in the evening" },
+				{ "abbr": "n",  "expa": "around nighttime" },
+				{ "abbr": "ln", "expa": "well past sundown" }
+			]
+		},
+		"stage-2": {
+			"placeholder": "task"
+		},
+		"stage-3": {
+			"placeholder": "work category",
+			"category": "cat"
+		},
+		"stage-4": {
+			"placeholder": "comments?"
+		},
+		"stage-5": {
+			"placeholder": "Press Enter to commit this bean",
+			"comment": "CMNT"
+		},
+		"success": "bean commited!"
+	}
+}
