@@ -13,7 +13,6 @@
 	"logform": {
 		"misc": {
 			"begin":"log time (press enter to commit)",
-			"stage0transition": "working on",
 			"placeholder": "log time",
 			"recap": "commited this week:"
 		},
@@ -34,7 +33,8 @@
 				{ "abbr": "ev", "expa": "in the evening" },
 				{ "abbr": "n",  "expa": "around nighttime" },
 				{ "abbr": "ln", "expa": "well past sundown" }
-			]
+			],
+			"transition": "working on"
 		},
 		"stage-2": {
 			"placeholder": "task"
