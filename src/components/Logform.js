@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import { filterFloat } from '../utilities/filters'
 import locales from '../locales/locales'
 
+import '../styles/Logform.scss'
+
 // Temp: localStorage only
 export default class Logform extends Component {
 
@@ -148,7 +150,7 @@ export default class Logform extends Component {
 					console.log('now on stage ' + this.state.stage)
 				} else {
 					this.setState({
-						placeholder: 'bean commited!',
+						placeholder: strings.success,
 						summary: ''
 					})
 

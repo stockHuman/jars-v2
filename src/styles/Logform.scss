@@ -1,0 +1,36 @@
+@import 'variables';
+
+.log {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+}
+
+.log-input {
+	width: 100%;
+	padding: $u / 2.5;
+	border: none;
+	font-size: $u / 2;
+	&::placeholder {
+		// color: $color__grey;
+		// font-family: "Helvetica Light";
+	}
+}
+
+.commits-this-week {
+	color: lighten($color__dark, 40%);
+	font-size: 14px;
+	font-style: italic;
+	margin-top: 4px;
+	display: block;
+	text-align: right;
+	margin-right: 2rem;
+	// font-family: "Helvetica Light";
+}
+
+.live-update {
+	@extend .commits-this-week;
+	text-align: left;
+	margin-bottom: 4px;
+}
