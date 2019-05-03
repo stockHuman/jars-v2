@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 // import dayjs from 'dayjs'
 
 import { filterFloat } from '../utilities/filters'
-
 import locales from '../locales/locales'
 
 // Temp: localStorage only
@@ -25,11 +24,11 @@ export default class Logform extends Component {
 	appendTime = hours => {
 		if (hours < 1) {
 			hours = 60 * hours
-			hours += ' ' + this.state.strings['stage-0'].minutes
+			hours += ' ' + this.state.strings.s0.minutes
 		} else if (hours === 1) {
-			hours += ' ' + this.state.strings['stage-0'].singularHourNoPronoun
+			hours += ' ' + this.state.strings.s0.singularHourNoPronoun
 		} else {
-			hours += ' ' + this.state.strings['stage-0'].singularHour
+			hours += ' ' + this.state.strings.s0.singularHour
 		}
 		return hours
 	}
@@ -60,22 +59,22 @@ export default class Logform extends Component {
 				console.log(this.state)
 				switch (this.state.stage) {
 					case 0:
-						this.setState({ placeholder: strings['stage-0'].placeholder })
+						this.setState({ placeholder: strings.s0.placeholder })
 						if (!isNaN(filterFloat(this.state.inputValue))) {
 							if (this.state.inputValue === '1') {
 								this.setState({
-									summary: `${this.state.inputValue} ${strings['stage-0'].singularHour} `
+									summary: `${this.state.inputValue} ${strings.s0.singularHour} `
 								})
 							} else {
 								this.setState({
-									summary: `${this.state.inputValue} ${strings['stage-0'].pluralHour} `
+									summary: `${this.state.inputValue} ${strings.s0.pluralHour} `
 								})
 							}
 						}
 						break;
 					case 1:
 						console.log(`[Debug]`)
-						const s1s = strings['stage-1'] // alias stage 1 strings
+						const s1s = strings.s1 // alias stage 1 strings
 						let humanTOD = '' // TOD == time of day
 
 						// eslint-disable-next-line default-case
@@ -110,29 +109,29 @@ export default class Logform extends Component {
 						break;
 					case 2:
 						this.setState({
-							placeholder: strings['stage-2'].placeholder,
+							placeholder: strings.s2.placeholder,
 							summary: `${this.state.summary + this.state.inputValue} => `
 						})
 						break;
 					case 3:
 						this.setState({
-							placeholder: strings['stage-3'].placeholder,
-							summary: this.state.summary + this.state.inputValue + '. (cat: '
+							placeholder: strings.s3.placeholder,
+							summary: `${this.state.summary + this.state.inputValue}. (${strings.s3.category}: `
 						})
 						break;
 					case 4:
 						this.setState({
-							placeholder: strings['stage-4'].placeholder,
+							placeholder: strings.s4.placeholder,
 							summary: this.state.summary + this.state.inputValue + ') '
 					 })
 						break;
 					case 5:
 						this.setState({
-							placeholder: strings['stage-5'].placeholder,
+							placeholder: strings.s5.placeholder,
 						})
 						if (this.state.inputValue !== '') {
 							this.setState({
-								summary: this.state.summary + 'CMNT: ' + this.state.inputValue
+								summary: `${this.state.summary} ${strings.s5.comment}: ${this.state.inputValue}`
 							})
 						}
 						break;
