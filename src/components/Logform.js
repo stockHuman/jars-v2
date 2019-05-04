@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import dayjs from 'dayjs'
+import dayjs from 'dayjs'
 
 import { filterFloat } from '../utilities/filters'
 import locales from '../locales/locales'
@@ -51,21 +51,24 @@ export default class Logform extends Component {
 		const abort = () => {
 			this.setState({ stage: 0 })
 			this.updateInputValue('')
-			this.setState({ placeholder: strings.misc.placeholder })
+			this.setState({
+				placeholder: strings.misc.placeholder,
+				summary: '',
+				stage: 0
+			})
 		}
 
 		const nextField = event => {
 			const strings = this.state.strings
 
 			if (event.key === 'Enter') {
-				console.log(this.state)
 				switch (this.state.stage) {
 					case 0:
 						this.setState({ placeholder: strings.s0.placeholder })
 						if (!isNaN(filterFloat(this.state.inputValue))) {
 							if (this.state.inputValue === '1') {
 								this.setState({
-									summary: `${this.state.inputValue} ${strings.s0.singularHour} `
+									summary: `${strings.s0.singularHour} `
 								})
 							} else {
 								this.setState({
@@ -75,11 +78,9 @@ export default class Logform extends Component {
 						}
 						break;
 					case 1:
-						console.log(`[Debug]`)
 						const s1s = strings.s1 // alias stage 1 strings
 						let humanTOD = '' // TOD == time of day
 
-						// eslint-disable-next-line default-case
 						switch (this.state.inputValue) {
 							case s1s.values[0].abbr: // 'in the early morning'
 								humanTOD = s1s.values[0].expa
@@ -102,6 +103,14 @@ export default class Logform extends Component {
 							case s1s.values[6].abbr: // 'well past sundown'
 								humanTOD = s1s.values[6].expa
 								break
+							default: // if something else is input,
+								if (this.state.inputValue === '') {
+									// default to right now...
+									humanTOD = `@ ${dayjs().format('hh:mm a')}`
+								} else {
+									// or to what was input
+									humanTOD = `<b>${this.state.inputValue}</b>`
+								}
 						}
 
 						this.setState({
@@ -160,25 +169,30 @@ export default class Logform extends Component {
 					// 	this.computeHours()
 					// })
 
-					// window.setTimeout(() => { form.blur() }, 2000)
+					// blurs() the input, returning focus to the main window
+					setTimeout(function (e) {
+						e.blur()
+						abort()
+					}, 2000, event.nativeEvent.target)
 				}
 			}
 		}
 
 		return (
 			<section className="log">
-				<span className="commits-this-week">{ strings.misc.recap } { this.state.hours }</span>
-				<div className="live-update">{ this.state.summary }</div>
+				<div className="live-update" dangerouslySetInnerHTML={{ __html: this.state.summary }}></div>
 				<input
 					type="text"
 					className="log-input"
 					id="log"
+					autoComplete="off"
 					value={ this.state.inputValue }
 					onChange={ evt => this.updateInputValue(evt) }
 					placeholder={ this.state.placeholder }
 					onFocus={ begin }
 					onBlur={ abort }
 					onKeyUp={ nextField } />
+				<span className="commits-this-week">{strings.misc.recap} {this.state.hours}</span>
 			</section>
 		)
 	}
