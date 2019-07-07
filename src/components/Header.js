@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import dayjs from 'dayjs'
 
 import locales from '../locales/locales'
 
@@ -28,7 +27,7 @@ export default class Header extends Component {
 	}
 
 	greeting() {
-		let hr = dayjs().hour()
+		let hr = new Date().getHours()
 		let msg = ''
 
 		// eslint-disable-next-line default-case

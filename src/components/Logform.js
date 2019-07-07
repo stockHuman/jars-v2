@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import dayjs from 'dayjs'
 
 import { filterFloat } from '../utilities/filters'
 import locales from '../locales/locales'
@@ -105,8 +104,8 @@ export default class Logform extends Component {
 								break
 							default: // if something else is input,
 								if (this.state.inputValue === '') {
-									// default to right now...
-									humanTOD = `@ ${dayjs().format('hh:mm a')}`
+									// returns 'HH:MM:SS'
+									humanTOD = `@ ${new Date().toTimeString().split(' ')[0]}`
 								} else {
 									// or to what was input
 									humanTOD = `<b>${this.state.inputValue}</b>`
